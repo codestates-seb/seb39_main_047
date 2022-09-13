@@ -34,4 +34,9 @@ public class BoardService {
 
         return findBoard;
     }
+
+    @Transactional
+    public int updateView(Long id) {
+        return boardRepository.updateView(id);
+    }
 }

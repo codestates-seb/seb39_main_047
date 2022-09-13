@@ -42,6 +42,7 @@ public class BoardController {
     @GetMapping("/{board-id}")
     public ResponseEntity getBoard(@PathVariable("board-id") Long boardId) {
         Board board = boardService.findBoard(boardId);
+        boardService.updateView(boardId);
 
 
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.boardToBoardResponseDto(board)), HttpStatus.OK);

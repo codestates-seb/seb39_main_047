@@ -6,6 +6,7 @@ export const Container = styled.div`
   width: 100%;
   z-index: 999;
   position: fixed;
+  border-bottom: 1px solid var(--yellow);
 `;
 
 export const Inner = styled.div`
@@ -20,9 +21,10 @@ export const Logo = styled.div`
   width: 30%;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 
   img {
-    width: 200px;
+    width: 170px;
   }
 `;
 export const Menus = styled.div`

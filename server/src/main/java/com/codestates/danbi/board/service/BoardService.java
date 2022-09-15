@@ -36,6 +36,11 @@ public class BoardService {
         return boardRepository.findAll(PageRequest.of(page, size, Sort.by("boardId").descending()));
     }
 
+    public Page<Board> searchBoards(String keyword, int page, int size) {
+
+        return boardRepository.findByTitleContaining(keyword, PageRequest.of(page, size,Sort.by("boardId").descending()));
+    }
+
     private Board findVerifiedBoard(Long boardId) {
         Optional<Board> optionalBoard = boardRepository.findById(boardId);
         Board findBoard = optionalBoard.orElseThrow(() -> new RuntimeException("BoardId not exist"));

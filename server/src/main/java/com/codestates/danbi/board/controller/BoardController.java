@@ -70,6 +70,18 @@ public class BoardController {
         return new ResponseEntity<>(new MultiResponseDto<>(responses,boardPage), HttpStatus.OK);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity searchBoard(@RequestParam String keyword, @RequestParam @Positive int page,
+                                      @RequestParam int size) {
+        Page<Board> boardPage = boardService.searchBoards(keyword, page-1, size);
+
+        List<Board> boards = boardPage.getContent();
+
+        List<BoardResponseDto> responses = mapper.boardsToBoardResponses(boards);
+
+        return new ResponseEntity<>(new MultiResponseDto<>(responses,boardPage),HttpStatus.OK);
+    }
+
     @DeleteMapping("/{board-Id}")
     private ResponseEntity deleteBoard() {
         return null;

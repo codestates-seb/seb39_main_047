@@ -27,6 +27,11 @@ public class Board extends BaseEntity {
 
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int view;
+
+/*    @Column(columnDefinition = "integer default 0", nullable = false)
+    private int like;*/
+
+
 /*
     @JoinColumn(name : "memberId")
     @ManyToOne

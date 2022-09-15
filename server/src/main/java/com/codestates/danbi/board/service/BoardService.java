@@ -2,6 +2,9 @@ package com.codestates.danbi.board.service;
 
 import com.codestates.danbi.board.entity.Board;
 import com.codestates.danbi.board.repository.BoardRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -26,6 +29,11 @@ public class BoardService {
     public Board findBoard(Long boardId) {
 
         return findVerifiedBoard(boardId);
+    }
+
+    public Page<Board> findBoards(int page, int size) {
+
+        return boardRepository.findAll(PageRequest.of(page, size, Sort.by("boardId").descending()));
     }
 
     private Board findVerifiedBoard(Long boardId) {

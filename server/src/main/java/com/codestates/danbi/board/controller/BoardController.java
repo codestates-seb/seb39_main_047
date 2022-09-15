@@ -5,13 +5,16 @@ import com.codestates.danbi.board.dto.BoardResponseDto;
 import com.codestates.danbi.board.entity.Board;
 import com.codestates.danbi.board.mapper.BoardMapper;
 import com.codestates.danbi.board.service.BoardService;
+import com.codestates.danbi.dto.MultiResponseDto;
 import com.codestates.danbi.dto.SingleResponseDto;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/boards")
@@ -55,8 +58,16 @@ public class BoardController {
     }
 
     @GetMapping
-    public ResponseEntity findBoards() {
-        return null;
+    public ResponseEntity findBoards(@RequestParam @Positive int page,
+                                     @RequestParam @Positive int size) {
+
+        Page<Board> boardPage = boardService.findBoards(page - 1, size);
+
+        List<Board> boards = boardPage.getContent();
+
+        List<BoardResponseDto> responses = mapper.boardsToBoardResponses(boards);
+
+        return new ResponseEntity<>(new MultiResponseDto<>(responses,boardPage), HttpStatus.OK);
     }
 
     @DeleteMapping("/{board-Id}")

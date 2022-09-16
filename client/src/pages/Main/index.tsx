@@ -1,3 +1,13 @@
+import TopNav from '@components/TopNav';
+import * as S from './style';
+
 export default function Main() {
-  return <></>;
+  return (
+    <>
+      <TopNav></TopNav>
+      <S.Container>
+        <div>HOME</div>
+      </S.Container>
+    </>
+  );
 }

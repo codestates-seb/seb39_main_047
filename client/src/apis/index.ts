@@ -1,3 +1,4 @@
+import { IBoard } from '@libs/types';
 import axios from 'axios';
 
 const apiRoot = axios.create({
@@ -13,9 +14,9 @@ export const getFreeBoards = async () => {
   }
 };
 
-export const postFreeBoard = async () => {
+export const postFreeBoard = async (form: IBoard) => {
   try {
-    return await axios.post('/v1/boards/create');
+    return await axios.post('/v1/boards/create', form);
   } catch (err) {
     throw new Error();
   }

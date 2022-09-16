@@ -7,7 +7,7 @@ export default function Home() {
       <TopNav />
       <div style={{ height: '10rem' }} />
       <S.Container>
-        <BoardHeader title={'자유게시판'} />
+        <BoardHeader title={'자유게시판'} isBoards={true} />
         <S.Main>
           {[...Array(15)].map((item, index) => (
             <BoardBox key={index} id={index} />

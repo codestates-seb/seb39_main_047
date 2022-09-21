@@ -109,7 +109,10 @@ public class BoardController {
 
     @ApiOperation(value = "게시글 삭제", notes = "게시글 식별자(boardId)에 해당하는 게시글을 삭제합니다.")
     @DeleteMapping("/{board-Id}")
-    private ResponseEntity deleteBoard() {
-        return null;
+    private ResponseEntity deleteBoard(@PathVariable("board-id") Long boradId){
+
+        boardService.deleteBoard(boradId);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

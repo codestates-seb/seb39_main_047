@@ -3,6 +3,8 @@ package com.codestates.danbi.board.dto;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Builder
 @Getter
 public class BoardResponseDto{
@@ -11,6 +13,8 @@ public class BoardResponseDto{
     private String title;
     private String content;
     private int view;
+    private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
 
 /*
     private String username; 멤버 기능 구현 후 추가 예정

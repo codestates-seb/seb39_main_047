@@ -1,5 +1,6 @@
 package com.codestates.danbi.board.mapper;
 
+import com.codestates.danbi.board.dto.BoardPatchDto;
 import com.codestates.danbi.board.dto.BoardPostDto;
 import com.codestates.danbi.board.dto.BoardResponseDto;
 import com.codestates.danbi.board.entity.Board;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-09-15T20:27:00+0900",
+    date = "2022-09-21T12:51:27+0900",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.15.1 (Oracle Corporation)"
 )
 @Component
@@ -26,6 +27,21 @@ public class BoardMapperImpl implements BoardMapper {
 
         board.setTitle( boardPostDto.getTitle() );
         board.setContent( boardPostDto.getContent() );
+
+        return board;
+    }
+
+    @Override
+    public Board boardPatchToBoard(BoardPatchDto boardPatchDto) {
+        if ( boardPatchDto == null ) {
+            return null;
+        }
+
+        Board board = new Board();
+
+        board.setBoardId( boardPatchDto.getBoardId() );
+        board.setTitle( boardPatchDto.getTitle() );
+        board.setContent( boardPatchDto.getContent() );
 
         return board;
     }

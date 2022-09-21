@@ -1,5 +1,6 @@
 package com.codestates.danbi.board.controller;
 
+import com.codestates.danbi.board.dto.BoardPatchDto;
 import com.codestates.danbi.board.dto.BoardPostDto;
 import com.codestates.danbi.board.dto.BoardResponseDto;
 import com.codestates.danbi.board.entity.Board;
@@ -66,8 +67,15 @@ public class BoardController {
 
     @ApiOperation(value = "게시글 수정", notes = "게시글 식별자(boardId)에 해당하는 게시글을 수정합니다.")
     @PatchMapping("/{board-id}")
-    public ResponseEntity patchBoard(@PathVariable("board-id") @Positive Long boardId, @Valid @RequestBody BoardPostDto board) {
-        return null;
+    public ResponseEntity patchBoard(@PathVariable("board-id") @Positive Long boardId, @Valid @RequestBody BoardPatchDto requestBody) {
+
+        requestBody.setBoardId(boardId);
+
+        Board board = boardService.updateBoard(mapper.boardPatchToBoard(requestBody));
+
+        BoardResponseDto response = mapper.boardToBoardResponseDto(board);
+
+        return new ResponseEntity<>(new SingleResponseDto<>(response),HttpStatus.OK);
     }
 
     @ApiOperation(value = "게시글 전체 조회", notes = "page와 size에 맞게 게시글을 조회합니다.")

@@ -11,6 +11,7 @@ import javax.persistence.Convert;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
@@ -19,12 +20,17 @@ import java.time.LocalDateTime;
 public class BaseEntity {
 
     @CreatedDate
-    @Column(name = "created_at", updatable = false)
+    @Column(name = "created_date", updatable = false)
     @Convert(converter = LocalDateTimeConverter.class)
-    private LocalDateTime createdAt;
+    private LocalDateTime createdDate;
 
     @LastModifiedDate
-    @Column(name = "last_modified_at")
+    @Column(name = "last_modified_date")
     @Convert(converter = LocalDateTimeConverter.class)
-    private LocalDateTime modifiedAt;
+    private LocalDateTime lastModifiedDate;
+
+    protected String getFormattedDate(LocalDateTime timestamp, String pattern) {
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        return timestamp.format(formatter);
+    }
 }

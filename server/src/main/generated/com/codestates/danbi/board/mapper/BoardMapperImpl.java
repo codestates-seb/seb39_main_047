@@ -4,14 +4,16 @@ import com.codestates.danbi.board.dto.BoardPatchDto;
 import com.codestates.danbi.board.dto.BoardPostDto;
 import com.codestates.danbi.board.dto.BoardResponseDto;
 import com.codestates.danbi.board.entity.Board;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-09-21T12:51:27+0900",
+    date = "2022-09-22T13:18:23+0900",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.15.1 (Oracle Corporation)"
 )
 @Component
@@ -58,6 +60,12 @@ public class BoardMapperImpl implements BoardMapper {
         boardResponseDto.title( board.getTitle() );
         boardResponseDto.content( board.getContent() );
         boardResponseDto.view( board.getView() );
+        if ( board.getCreatedDate() != null ) {
+            boardResponseDto.createdDate( Date.from( board.getCreatedDate().toInstant( ZoneOffset.UTC ) ) );
+        }
+        if ( board.getLastModifiedDate() != null ) {
+            boardResponseDto.lastModifiedDate( Date.from( board.getLastModifiedDate().toInstant( ZoneOffset.UTC ) ) );
+        }
 
         return boardResponseDto.build();
     }

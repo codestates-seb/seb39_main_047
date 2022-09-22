@@ -23,7 +23,6 @@ public class UserController {
     @PostMapping("/join")
     public Long join (@RequestBody Map<String, String> user) {
         return userRepository.save(User.builder()
-                .nickname(user.get("nickname"))
                 .email(user.get("email"))
                 .password(passwordEncoder.encode(user.get("password")))
                 .roles(Collections.singletonList("ROLE_USER")) //최초 가입시 USER 로 설정

@@ -33,7 +33,7 @@ public class Board extends BaseEntity {
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int view;
 
-    @OneToMany(mappedBy = "board", fetch = LAZY,cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "board",fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
 
     /*

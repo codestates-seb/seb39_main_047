@@ -1,5 +1,6 @@
 package com.codestates.danbi.board.mapper;
 
+import com.codestates.danbi.board.dto.BoardCommentResponseDto;
 import com.codestates.danbi.board.dto.BoardPatchDto;
 import com.codestates.danbi.board.dto.BoardPostDto;
 import com.codestates.danbi.board.dto.BoardResponseDto;
@@ -15,5 +16,6 @@ public interface BoardMapper {
     Board boardPatchToBoard(BoardPatchDto boardPatchDto);
     BoardResponseDto boardToBoardResponseDto(Board board);
     List<BoardResponseDto> boardsToBoardResponses(List<Board> boards);
+    BoardCommentResponseDto boardToCommentResponse(Board board);
 
 }

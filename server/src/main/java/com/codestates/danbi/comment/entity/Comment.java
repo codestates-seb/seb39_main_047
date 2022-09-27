@@ -20,8 +20,9 @@ public class Comment extends BaseEntity {
 
     private String content;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "boardId")
     private Board board;
+
 
 }

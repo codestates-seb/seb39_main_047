@@ -1,5 +1,6 @@
 package com.codestates.danbi.board.controller;
 
+import com.codestates.danbi.board.dto.BoardCommentResponseDto;
 import com.codestates.danbi.board.dto.BoardPatchDto;
 import com.codestates.danbi.board.dto.BoardPostDto;
 import com.codestates.danbi.board.dto.BoardResponseDto;
@@ -60,8 +61,11 @@ public class BoardController {
         Board board = boardService.findBoard(boardId);
         boardService.updateView(boardId);
 
+        BoardCommentResponseDto response = mapper.boardToCommentResponse(board);
+/*        BoardResponseDto response = mapper.boardToBoardResponseDto(board);*/
 
-        return new ResponseEntity<>(new SingleResponseDto<>(mapper.boardToBoardResponseDto(board)), HttpStatus.OK);
+
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
     }
 
 

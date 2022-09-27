@@ -19,9 +19,9 @@ public class BoardResponseDto {
     private Date createdDate;
     private Date lastModifiedDate;
 
-/*
-    private String username; 멤버 기능 구현 후 추가 예정
-
-    private List<> comment; 댓글 기능 구현 후 추가 예정
+    /*
+        private String username; 멤버 기능 구현 후 추가 예정
     */
+
+
 }

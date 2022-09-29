@@ -1,5 +1,5 @@
-import LoginForm from '@components/LoginForm';
-import TopNav from '@components/TopNav';
+import LoginForm from '../../components/LoginForm';
+import TopNav from '../../components/TopNav';
 import * as S from './style';
 
 const Login = () => {

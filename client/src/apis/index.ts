@@ -1,4 +1,4 @@
-import { IBoard, ISignUp } from '@libs/types';
+import { IBoard, ISignUp } from '../libs/types';
 import axios from 'axios';
 
 const apiRoot = axios.create({

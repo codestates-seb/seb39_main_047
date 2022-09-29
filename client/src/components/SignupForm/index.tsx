@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Card from '@components/Card';
-import Button from '@components/Button';
+import Card from '../../components/Card';
+import Button from '../../components/Button';
 import * as S from './style';
-import { authService } from '@apis/';
+import { authService } from '../../apis/';
 import { useNavigate } from 'react-router-dom';
 // import axios from 'axios';
 
@@ -17,7 +17,7 @@ const SignupForm = () => {
     event.preventDefault();
 
     const form = {
-      nickname: username,
+      username: username,
       email: email,
       password: password,
     };

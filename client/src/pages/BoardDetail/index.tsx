@@ -1,4 +1,4 @@
-import { BoardHeader, TopNav } from '@components/index';
+import { BoardHeader, TopNav } from '../../components/index';
 import styled from 'styled-components';
 import * as S from './style';
 

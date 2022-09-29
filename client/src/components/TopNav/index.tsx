@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 
-import Button from '@components/Button';
+import Button from '../../components/Button';
 import * as S from './style';
 import DanbiLogo from '../../assets/logo-DANBI.svg';
 

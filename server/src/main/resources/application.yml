@@ -15,3 +15,8 @@ spring:
     path match:
       matching-strategy: ant_path_matcher
 
+  servlet:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 20MB
+

@@ -26,6 +26,18 @@ public class BoardService {
         return boardRepository.save(board);
     }
 
+    @Transactional
+    public Board updateBoard(Board board) {
+
+        Board findBoard = findVerifiedBoard(board.getBoardId());
+
+        Optional.ofNullable(board.getTitle()).ifPresent(title -> findBoard.setTitle(title));
+        Optional.ofNullable(board.getContent()).ifPresent(content -> findBoard.setContent(content));
+
+        return boardRepository.save(findBoard);
+
+    }
+
     public Board findBoard(Long boardId) {
 
         return findVerifiedBoard(boardId);
@@ -39,6 +51,13 @@ public class BoardService {
     public Page<Board> searchBoards(String keyword, int page, int size) {
 
         return boardRepository.findByTitleContaining(keyword, PageRequest.of(page, size,Sort.by("boardId").descending()));
+    }
+
+    public void deleteBoard(Long boardId) {
+        Board findBoard = findVerifiedBoard(boardId);
+
+        boardRepository.delete(findBoard);
+
     }
 
     private Board findVerifiedBoard(Long boardId) {

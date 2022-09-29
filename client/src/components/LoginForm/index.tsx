@@ -1,29 +1,30 @@
 import React, { useState } from 'react';
 import Button from '../../components/Button';
 import Card from '../../components/Card';
-import axios from 'axios';
 import * as S from './style';
+import { useNavigate } from 'react-router-dom';
+import { authService } from '../../apis';
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
 
   const submitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
-    const response = await axios({
-      url: '/login',
-      method: 'post',
-      data: {
-        email: email,
-        password: password,
-      },
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+
+    const form = {
+      email,
+      password,
+    };
+
+    const response = await authService.Login(form);
+    if (response?.status === 200) {
+      alert('로그인 성공');
+      navigate('/');
+    } else setError(true);
   };
   return (
     <Card>

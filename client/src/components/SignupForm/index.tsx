@@ -4,7 +4,6 @@ import Button from '../../components/Button';
 import * as S from './style';
 import { authService } from '../../apis/';
 import { useNavigate } from 'react-router-dom';
-// import axios from 'axios';
 
 const SignupForm = () => {
   const navigate = useNavigate();
@@ -17,37 +16,18 @@ const SignupForm = () => {
     event.preventDefault();
 
     const form = {
-      username: username,
+      nickname: username,
       email: email,
       password: password,
     };
 
-    const result = await authService.SignUp(form);
-    if (result) {
-      console.log(result);
-      // navigate('/login');
+    const response = await authService.SignUp(form);
+    if (response?.status === 200) {
+      alert('회원가입 성공');
+      navigate('/login');
     } else {
-      console.log(result);
+      console.log(response);
     }
-
-    // const response = await axios
-    //   .post(
-    //     '/join',
-    //     {
-    //       nickname: username,
-    //       email: email,
-    //       password: password,
-    //     },
-    //     {
-    //       withCredentials: true,
-    //     }
-    //   )
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   };
 
   return (

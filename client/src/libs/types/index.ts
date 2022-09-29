@@ -4,7 +4,11 @@ export interface IBoard {
 }
 
 export interface ISignUp {
-  username: string;
+  nickname: string;
+  email: string;
+  password: string;
+}
+export interface ILogin {
   email: string;
   password: string;
 }

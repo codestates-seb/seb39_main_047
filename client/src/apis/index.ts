@@ -1,9 +1,25 @@
-import { IBoard } from '@libs/types';
+import { IBoard, ISignUp } from '@libs/types';
 import axios from 'axios';
 
 const apiRoot = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: 'http://121.165.202.61:80',
 });
+
+export const SignUp = async (SignUpForm: ISignUp) => {
+  console.log('Form', SignUpForm);
+  try {
+    const result = await apiRoot.post('/join', SignUpForm, {
+      withCredentials: true,
+    });
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const authService = {
+  SignUp,
+};
 
 export const getFreeBoards = async () => {
   try {

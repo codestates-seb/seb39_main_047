@@ -26,14 +26,13 @@ import java.util.List;
 @RequestMapping("/v1/boards")
 public class BoardController {
 
-    private BoardService boardService;
-    private BoardMapper mapper;
+    private final BoardService boardService;
+    private final BoardMapper mapper;
 
     public BoardController(BoardService boardService, BoardMapper mapper) {
         this.boardService = boardService;
         this.mapper = mapper;
     }
-
 
     @ApiOperation(value = "게시글 등록", notes = "게시글을 등록합니다.")
     @ApiResponses(value = {

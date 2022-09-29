@@ -3,6 +3,7 @@ package com.codestates.danbi.board.entity;
 
 import com.codestates.danbi.baseEntity.BaseEntity;
 import com.codestates.danbi.comment.entity.Comment;
+import com.codestates.danbi.image.entity.Image;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +13,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
@@ -33,8 +33,23 @@ public class Board extends BaseEntity {
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int view;
 
-    @OneToMany(mappedBy = "board",fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "board",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true
+    )
+    private List<Image> images = new ArrayList<>();
+
+    public void addImage(Image image) {
+        this.images.add(image);
+
+        if(image.getBoard() != this)
+            image.setBoard(this);
+    }
+
 
     /*
     @Column(columnDefinition = "integer default 0", nullable = false)
@@ -47,7 +62,6 @@ public class Board extends BaseEntity {
     private Member author;
 
  */
-
 
 
 }

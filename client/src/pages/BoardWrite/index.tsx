@@ -1,5 +1,5 @@
-import { postFreeBoard } from '@apis/index';
-import { BoardHeader, TopNav } from '@components/index';
+import { postFreeBoard } from '../../apis/index';
+import { BoardHeader, TopNav } from '../../components/index';
 import { useState } from 'react';
 import * as S from './style';
 

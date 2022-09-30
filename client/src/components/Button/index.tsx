@@ -2,8 +2,8 @@ import * as S from './style';
 
 export type Props = {
   children: React.ReactNode;
-  onClick: () => void;
-  type: 'button' | 'submit';
+  onClick?: () => void;
+  type?: 'button' | 'submit';
 };
 
 const Button: React.FC<Props> = ({ children, onClick, type }) => {

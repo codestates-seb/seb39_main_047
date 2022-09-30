@@ -6,7 +6,7 @@ import {
   MyPage,
   BoardWrite,
   BoardDetail,
-} from '@pages/index';
+} from '../pages/index';
 
 export default function Router() {
   return (

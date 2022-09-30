@@ -1,6 +1,6 @@
-import DeleteAccount from '@components/DeleteAccount';
-import MyProfile from '@components/MyProfile';
-import TopNav from '@components/TopNav';
+import DeleteAccount from '../../components/DeleteAccount';
+import MyProfile from '../../components/MyProfile';
+import TopNav from '../../components/TopNav';
 
 import * as S from './style';
 

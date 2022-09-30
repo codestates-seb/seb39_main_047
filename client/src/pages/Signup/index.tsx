@@ -1,5 +1,5 @@
-import TopNav from '@components/TopNav';
-import SignupForm from '@components/SignupForm';
+import TopNav from '../../components/TopNav';
+import SignupForm from '../../components/SignupForm';
 import * as S from './style';
 
 const Signup = () => {

@@ -27,7 +27,7 @@ export const Login = async (LoginForm: ILogin) => {
     const jwtToken = response.data;
     setCookie('accessJwtToken', jwtToken); // 쿠키에 토큰 저장
     const decodedUserInfo = jwt_decode(jwtToken); // 토큰 decode
-    localStorage.setItem('user', JSON.stringify(decodedUserInfo)); //토큰에 저장되어있는 userInfo 저장
+    localStorage.setItem('userInfo', JSON.stringify(decodedUserInfo)); //토큰에 저장되어있는 userInfo 저장
     return response;
   } catch {
     throw new Error('로그인이 실패했습니다');

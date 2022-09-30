@@ -32,7 +32,17 @@ export const Menus = styled.div`
   justify-content: space-around;
   width: 30%;
 `;
-export const Mypage = styled.div`
+
+export const LogOut = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  Button {
+    margin-left: 15px;
+  }
+`;
+export const LogIn = styled.div`
   display: flex;
   justify-content: center;
   width: 30%;

@@ -1,14 +1,17 @@
 import Button from '../../components/Button';
 import * as S from './style';
+import { getUser } from '../../util/localstorage';
 
 const MyProfile = () => {
+  const emailInfo = getUser();
+
   return (
     <S.InfoContainer>
       <h1>마이 페이지</h1>
       <S.Form>
         <S.Section>
           <S.Label>이메일:</S.Label>
-          <span>danbi@danbi.com</span>
+          <span>{emailInfo.sub}</span>
         </S.Section>
         <S.Section>
           <S.Label>닉네임:</S.Label>

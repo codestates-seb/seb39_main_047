@@ -32,12 +32,13 @@ const TopNav = () => {
         {userInfo ? (
           <S.LogOut>
             <h4>반갑습니다 😃</h4>
-            <Button onClick={logoutHandler}>Log Out</Button>
+            <Button onClick={() => navigate('/mypage')}>마이 페이지</Button>
+            <Button onClick={logoutHandler}>로그아웃</Button>
           </S.LogOut>
         ) : (
           <S.LogIn>
-            <Button onClick={() => navigate('/login')}>Log In</Button>
-            <Button onClick={() => navigate('/signup')}>Sign Up</Button>
+            <Button onClick={() => navigate('/login')}>로그인</Button>
+            <Button onClick={() => navigate('/signup')}>회원가입</Button>
           </S.LogIn>
         )}
       </S.Inner>

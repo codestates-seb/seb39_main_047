@@ -5,18 +5,9 @@ export const Form = styled.form`
   align-items: stretch;
   flex-direction: column;
 
-  div {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-
-    Button {
-      margin-top: 0;
-      margin-left: 10px;
-      height: 33px;
-      padding: 0;
-      border-radius: 10px;
-    }
+  p {
+    color: red;
+    margin-bottom: 10px;
   }
 `;
 

@@ -1,32 +1,64 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
 import * as S from './style';
 import { authService } from '../../apis/';
 import { useNavigate } from 'react-router-dom';
 
+const isEmpty = (value: string) => value.trim() === '';
+const isSixChars = (value: string) => value.trim().length >= 6;
+
 const SignupForm = () => {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  //유효성 검사
+  const [formInputsValidity, setFormInputsValidity] = useState({
+    nickname: true,
+    email: true,
+    password: true,
+  });
+
+  const nicknameInputRef = useRef<HTMLInputElement>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
 
   const submitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const form = {
-      nickname: username,
-      email: email,
-      password: password,
-    };
+    const enteredNickname = nicknameInputRef.current!.value;
+    const enteredEmail = emailInputRef.current!.value;
+    const enteredPassword = emailInputRef.current!.value;
 
-    const response = await authService.SignUp(form);
-    if (response?.status === 200) {
-      alert('회원가입 성공');
-      navigate('/login');
+    const enteredNicknameIsValid = !isEmpty(enteredNickname);
+    const enteredEmailIsValid = !isEmpty(enteredEmail);
+    const enteredPasswordIsValid =
+      !isEmpty(enteredPassword) && !isSixChars(enteredPassword);
+
+    setFormInputsValidity({
+      nickname: enteredNicknameIsValid,
+      email: enteredEmailIsValid,
+      password: enteredPasswordIsValid,
+    });
+
+    const formIsValid =
+      enteredNicknameIsValid && enteredEmailIsValid && enteredPasswordIsValid;
+
+    if (!formIsValid) {
+      alert(
+        '제출 형식이 올바르지 않습니다 (모든 정보 필수 기입 & 비밀번호 6자리 이상)'
+      );
     } else {
-      console.log(response);
+      const form = {
+        nickname: enteredNickname,
+        email: enteredEmail,
+        password: enteredPassword,
+      };
+
+      const response = await authService.SignUp(form);
+      if (response?.status === 200) {
+        alert('회원가입 성공');
+        navigate('/login');
+      }
     }
   };
 
@@ -35,33 +67,21 @@ const SignupForm = () => {
       <S.Form onSubmit={submitHandler}>
         <S.Title>회원가입</S.Title>
         <S.Label htmlFor="nickname">닉네임</S.Label>
-        <S.Input
-          type="nickname"
-          id="nickname"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        ></S.Input>
-        <S.Label htmlFor="email">이메일</S.Label>
-        <div>
-          <S.Input
-            type="email"
-            id="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></S.Input>
-          {/* <Button>중복확인</Button> */}
-        </div>
-        <S.Label htmlFor="password">비밀번호</S.Label>
+        {!formInputsValidity.nickname && <p>닉네임을 입력해주세요</p>}
+        <S.Input type="nickname" id="nickname" ref={nicknameInputRef}></S.Input>
+        <S.Label htmlFor="email">이메일</S.Label>{' '}
+        {!formInputsValidity.email && <p>이메일을 입력해주세요</p>}
+        <S.Input type="email" id="email" required ref={emailInputRef}></S.Input>
+        <S.Label htmlFor="password">비밀번호</S.Label>{' '}
+        {!formInputsValidity.password && (
+          <p>비밀번호를 6자 이상 입력해주세요</p>
+        )}
         <S.Input
           type="password"
           id="password"
           required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          ref={passwordInputRef}
         ></S.Input>
-        {/* <S.Label>비밀번호 확인</S.Label>
-        <S.Input></S.Input> */}
         <Button type="submit" onClick={() => {}}>
           회원가입 하기
         </Button>

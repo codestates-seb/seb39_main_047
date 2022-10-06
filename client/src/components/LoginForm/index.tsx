@@ -10,7 +10,6 @@ const LoginForm = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
 
   const submitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -24,8 +23,9 @@ const LoginForm = () => {
     if (response?.status === 200) {
       alert('로그인 성공');
       navigate('/');
-    } else setError(true);
+    }
   };
+
   return (
     <Card>
       <S.Form onSubmit={submitHandler}>

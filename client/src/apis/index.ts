@@ -8,7 +8,6 @@ const apiRoot = axios.create({
 });
 
 export const SignUp = async (SignUpForm: ISignUp) => {
-  console.log('Form', SignUpForm);
   try {
     const response = await axios.post('/join', SignUpForm, {
       withCredentials: true,
@@ -30,7 +29,7 @@ export const Login = async (LoginForm: ILogin) => {
     localStorage.setItem('userInfo', JSON.stringify(decodedUserInfo)); //토큰에 저장되어있는 userInfo 저장
     return response;
   } catch {
-    throw new Error('로그인이 실패했습니다');
+    alert('로그인이 실패했습니다. 정보가 올바른지 다시 확인해주세요');
   }
 };
 
